@@ -16,6 +16,7 @@ typedef struct Node {
 
 typedef struct {
     NODE *head;
+    NODE *tail;
     int tamanho;
 } LISTA;
 
@@ -30,6 +31,12 @@ void inicializar(LISTA *l);
 
 // Retorna o tamanho da lista sequencial
 int tamanho(LISTA *l);
+
+// Retorna a cabeça da lista
+ITEM head(LISTA *l);
+
+// Retorna a cauda da lista
+ITEM tail(LISTA *l);
 
 // Retorna true se a lista estiver cheia
 bool cheia(LISTA *l);
@@ -69,16 +76,13 @@ bool alterar(ITEM item, int pos, LISTA *l);
             Caso contrario, a funcao retorna false para indicar que o item
             nao foi inserido.
  */
-bool inserirNaPos(ITEM item, int i, LISTA *l);
+bool inserirNaPos(ITEM item, int pos, LISTA *l);
 
 /*
   Objetivo: Remove o item passado da lista. Caso nao seja
             encontrato, retorna false. Se for removido, true.
 */
 bool remover(ITEM item, LISTA *l);
-
-// Exibicao de um item da lista
-void exibirItem(ITEM i);
 
 // Exibicao da lista sequencial
 void exibirLista(LISTA *l);
