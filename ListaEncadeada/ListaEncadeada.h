@@ -84,6 +84,12 @@ bool inserirNaPos(ITEM item, int pos, LISTA *l);
 */
 bool remover(ITEM item, LISTA *l);
 
+// Remove um item de determinada posição da lista e retorna true, caso a posição seja inválida, retorna false
+bool removerDaPos(int pos, LISTA *l);
+
+// Clona a lista passada como parâmetro
+LISTA *clonar(LISTA *l);
+
 // Exibicao da lista sequencial
 void exibirLista(LISTA *l);
 

@@ -17,6 +17,8 @@ void menu() {
     printf("\n9 - Limpar a lista");
     printf("\n10 - Inserir no final");
     printf("\n11 - Exibir cabeca e cauda da lista");
+    printf("\n12 - Remover por posicao");
+    printf("\n13 - Clonar lista");
     printf("\nEscolha: ");
 }
 
@@ -78,6 +80,16 @@ int main() {
                 printf(_ITEM_, head(&l));;
                 printf("\nCauda: ");
                 printf(_ITEM_, tail(&l));
+                break;
+            case 12:
+                printf("\nDigite uma posicao: ");
+                scanf("%d", &pos);
+                removerDaPos(pos, &l);
+                break;
+            case 13:
+                printf("\nTeste de clonar lista: ");
+                LISTA *g = clonar(&l);
+                exibirLista(g);
                 break;
             default: printf("\n** Operacao invalida.");
         }

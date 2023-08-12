@@ -33,6 +33,7 @@ ITEM tail(LISTA *l) {
 }
 
 bool cheia(LISTA *l) {
+    printf("\nTamanho: %d; memoria disponivel", l->tamanho);
     return false;
 }
 
@@ -178,11 +179,46 @@ bool remover(ITEM item, LISTA *l) {
     return false; // Item não encontrado
 }
 
+bool removerDaPos(int pos, LISTA *l) {
+    NODE *p = NodePosicao(pos, l);
+
+    if (p == NULL)
+        return false;
+
+    remover(p->item, l);
+    return true;
+}
+
+// Função com bug
+LISTA *clonar(LISTA *l) {
+    LISTA *novaLista;
+
+    inicializar(novaLista);
+
+    novaLista->tamanho = l->tamanho;
+
+    NODE *pLista = l->head;
+    NODE *p = criarNode(pLista->item, NULL);
+
+    novaLista->head = p;
+
+    while(pLista->prox != NULL) {
+        p->prox = criarNode(pLista->prox->item, NULL);
+        
+        p = p->prox;
+        pLista = pLista->prox;
+    }
+
+    novaLista->tail = p;
+
+    return novaLista;
+}
+
 void exibirLista(LISTA *l) {
     NODE *p = l->head;
     int pos = 0, index = tamanho(l)-1;
 
-    printf("[");
+    printf("\n[");
 
     while (p != NULL) {
         printf(_ITEM_, p->item);
