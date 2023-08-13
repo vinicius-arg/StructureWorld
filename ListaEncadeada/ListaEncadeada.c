@@ -189,10 +189,8 @@ bool removerDaPos(int pos, LISTA *l) {
     return true;
 }
 
-// Função com bug
 LISTA *clonar(LISTA *l) {
-    LISTA *novaLista;
-
+    LISTA *novaLista = (LISTA*) malloc(sizeof(LISTA));
     inicializar(novaLista);
 
     novaLista->tamanho = l->tamanho;
