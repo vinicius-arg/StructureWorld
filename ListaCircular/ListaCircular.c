@@ -1,5 +1,11 @@
 #include "ListaCircular.h"
 
+/* Na lista circular, o nó da cabeça serve apenas para apontar 
+os outros elementos e servir de ponto de retorno, seu valor, contudo,
+nunca é alterado, fazendo com que todas as operações funcionem com
+base no l->head->prox, o próximo elemento depois da cabeça. 
+Devido a isso, a remoção da "cabeça" é facilitada. */
+
 void inicializar(LISTA *l) {
     l->head = (NODE*) malloc(sizeof(NODE));
     l->head->prox = l->head;
@@ -29,7 +35,7 @@ bool vazia(LISTA *l) {
 }
 
 int buscar(ITEM item, LISTA *l) {
-    NODE *p = l->head;
+    NODE *p = l->head->prox;
 
     for (int i = 0; i < tamanho(l); i++) {
         if (igual(item, p->item))
@@ -46,7 +52,7 @@ ITEM enesimo(int n, LISTA *l) {
         exit(EXIT_FAILURE);
     }
 
-    NODE *p = l->head;
+    NODE *p = l->head->prox;
 
     for (int i = 0; i < n; i++) {
         p = p->prox;
@@ -78,6 +84,21 @@ bool inserir(ITEM item, LISTA *l) {
     return true;
 }
 
+bool inserirNoFinal(ITEM item, LISTA *l) {
+    if (cheia(l))
+        return false;
+
+    NODE *pAntecessor = l->head->prox;
+
+    for (int i = 0; i < tamanho(l)-1; i++) {
+        pAntecessor = pAntecessor->prox;
+    }
+
+    pAntecessor->prox = criarNode(item, l->head);
+    l->tamanho++;
+    return true;
+}
+
 bool remover(int n, LISTA *l) {
     if (n < 0 || n >= tamanho(l))
         return false;
@@ -102,7 +123,7 @@ void exibirLista(LISTA *l) {
     NODE *p = l->head->prox;
 
     printf("[");
-    for (int i = 0; i <= tamanho(l); i++) {
+    for (int i = 0; i < tamanho(l); i++) {
         printf(_ITEM_, p->item);
         p = p->prox;
 

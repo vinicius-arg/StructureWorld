@@ -15,6 +15,7 @@ void menu() {
     printf("\n6 - Remover item");
     printf("\n7 - Inserir no final");
     printf("\n8 - Limpar lista");
+    printf("\n9 - Exibir descritores");
     printf("\nEscolha: ");
 }
 
@@ -52,6 +53,16 @@ int main() {
                 printf("\nDigite uma posicao: ");
                 scanf("%d", &pos);
                 remover(pos, &l);
+                break;
+            case 7:
+                printf("\nDigite um item: ");
+                scanf(_ITEM_, &item);  
+                inserirNoFinal(item, &l);
+                break;
+            case 9:
+                printf("\nCabeca da lista: %d", l.head->item);
+                printf("\nCabeca verdadeira: %d", l.head->prox->item);
+                printf("\nTamanho: %d", l.tamanho);
                 break;
             default:
                 printf("**Opcao invalida");
